@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Georgia", ui-serif, Cambria, "Times New Roman", Times, serif;
+
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-alt: #0f0f0f;
+  --color-surface-hover: rgba(255, 77, 46, 0.05);
+  --color-accent: #ff4d2e;
+  --color-accent-transparent: rgba(255, 77, 46, 0.3);
+  --color-border: #222222;
+  --color-border-subtle: #333333;
+  --color-text-main: #f5f5f4;
+  --color-text-muted: #888888;
+  --color-text-dim: #666666;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text-main)] font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-[var(--color-text-main)];
+  }
+}
+
+@layer components {
+  .tag-box {
+    @apply relative p-6 bg-[var(--color-surface)] border border-[var(--color-accent-transparent)] transition-colors;
+  }
+  
+  .tag-box::before,
+  .tag-box::after {
+    content: '';
+    @apply absolute w-2 h-2 border-2 border-[var(--color-accent)] transition-all duration-300;
+  }
+  
+  .tag-box::before {
+    @apply top-[-2px] left-[-2px] border-r-0 border-b-0;
+  }
+  
+  .tag-box::after {
+    @apply bottom-[-2px] right-[-2px] border-l-0 border-t-0;
+  }
+
+  .tag-box:hover {
+    @apply border-[var(--color-accent)] bg-[var(--color-surface-hover)];
+  }
+  
+  .convert-block {
+    @apply my-8 p-6 bg-[var(--color-surface-alt)] border border-[var(--color-border)];
+  }
+
+  .glass {
+    @apply bg-[rgba(20,20,20,0.8)] backdrop-blur-[4px];
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--color-accent)] text-white text-xs font-bold px-5 py-2 uppercase tracking-wider hover:bg-orange-600 transition-colors inline-block text-center cursor-pointer;
+  }
+
+  .btn-outline {
+    @apply bg-[#1a1a1a] border border-[var(--color-accent)] text-[var(--color-accent)] text-[11px] font-mono tracking-widest uppercase hover:bg-[var(--color-accent)] hover:text-white transition-all inline-block text-center cursor-pointer px-5 py-3;
+  }
+}
